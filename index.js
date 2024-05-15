@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const productRouter = require("./routes/product.route.js");
 const categoryRouter = require("./routes/category.route.js");
+const userRouter = require("./routes/user.route.js");
+const authRouter = require("./routes/auth.route.js");
+const cartRouter = require("./routes/cart.route.js");
+const orderRouter = require("./routes/order.route.js");
 
 const app = express();
 
@@ -28,6 +32,10 @@ app.use(
 // routes
 app.use("/products", productRouter.router);
 app.use("/categories", categoryRouter.router);
+app.use("/users", userRouter.router);
+app.use("/auth", authRouter.router);
+app.use("/cart", cartRouter.router);
+app.use("/orders", orderRouter.router);
 
 const PORT = 8000;
 app.listen(PORT, () => {

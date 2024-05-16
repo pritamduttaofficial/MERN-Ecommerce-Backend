@@ -6,10 +6,11 @@ const {
 } = require("../controllers/order.controller.js");
 
 const router = express.Router();
-// orders is already added in base path
+
 router
   .post("/", createOrder)
-  .get("/", fetchOrdersByUser)
+  .get("/user/:userId", fetchOrdersByUser)
   .patch("/:id", updateOrder);
+// .get('/',fetchAllOrders)
 
 exports.router = router;

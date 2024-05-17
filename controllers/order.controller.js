@@ -23,16 +23,6 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-// exports.deleteOrder = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const order = await Order.findByIdAndDelete(id);
-//     res.status(200).json(order);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// };
-
 exports.updateOrder = async (req, res) => {
   const { id } = req.params;
   try {
@@ -42,5 +32,22 @@ exports.updateOrder = async (req, res) => {
     res.status(200).json(order);
   } catch (err) {
     res.status(400).json(err);
+  }
+};
+
+exports.fetchAllOrders = async (req, res) => {
+  try {
+    console.log(req.query);
+    const { status } = req.query;
+    const query = {};
+
+    if (status) {
+      query.status = status;
+    }
+
+    const orders = await Order.find(query);
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
